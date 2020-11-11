@@ -6,9 +6,10 @@ import { GetProducts } from './components/GetProducts';
 import { CreateProduct } from './components/CreateProduct';
 import { DiscontinuedProduct } from './components/DiscontinuedProduct';
 import { AddQtyByID } from './components/AddQtyByID';
-
+import { SubtractQtyByID } from './components/SubtractQtyByID';
 
 import './custom.css'
+
 
 export default class App extends Component {
   static displayName = App.name;
@@ -21,6 +22,8 @@ export default class App extends Component {
             <Route path='/create-product' component={CreateProduct} />
 
             <Route path='/add-quantity-product' component={AddQtyByID} />
+
+            <Route path='/subtract-quantity-product' component={SubtractQtyByID} />
 
             <Route path='/discontinued-product' component={DiscontinuedProduct} />
 
