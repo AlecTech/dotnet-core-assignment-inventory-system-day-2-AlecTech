@@ -41,18 +41,19 @@ namespace ReactAPI_4Point2.Controllers
             422: "Unprocessable Entity" - Kind of similar to conflict, the entity breaks business logic rules.
             500: "Internal Server Error" - Something's broke, who knows what
         */
+        //Get All invenory in Alphabetical order with Discontinued Status
         [HttpGet("All")]
         public ActionResult<IEnumerable<Product>> AllProducts_GET()
         {
             return new ProductController().GetAllInventory();
         }
-
+        //Get Only Active inventory (excluding discontinued items)
         [HttpGet("Active")]
         public ActionResult<IEnumerable<Product>> AllActiveProducts_GET()
         {
             return new ProductController().GetInventory();
         }
-
+        //Display product by id
         [HttpGet("ByID")]
         public ActionResult<Product> ProductByID_GET(string productID)
         {
@@ -79,7 +80,7 @@ namespace ReactAPI_4Point2.Controllers
             }
             return result;
         }
-
+        //create product: Name input is enough the rest will default or auto increment 
         [HttpPost("Create")]
         public ActionResult<Product> ProductCreate_POST(string name, string quantity, string discontinued)
         {
@@ -99,7 +100,7 @@ namespace ReactAPI_4Point2.Controllers
 
             return response;
         }
-
+        // Discontinue product by id 
         [HttpPatch("Discontinue")]
         public ActionResult<Product> DiscontinueProduct_PATCH(string id)
         {
