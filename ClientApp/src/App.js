@@ -5,6 +5,8 @@ import { Home } from './components/Home';
 import { GetProducts } from './components/GetProducts';
 import { CreateProduct } from './components/CreateProduct';
 import { DiscontinuedProduct } from './components/DiscontinuedProduct';
+import { AddQtyByID } from './components/AddQtyByID';
+
 
 import './custom.css'
 
@@ -17,6 +19,8 @@ export default class App extends Component {
             <Route exact path='/' component={Home} />
 
             <Route path='/create-product' component={CreateProduct} />
+
+            <Route path='/add-quantity-product' component={AddQtyByID} />
 
             <Route path='/discontinued-product' component={DiscontinuedProduct} />
 

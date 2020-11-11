@@ -167,17 +167,14 @@ namespace ReactAPI_4Point2.Controllers
                 
                 //Int32 value = -1;
                 //value = context.Products.Where(x => x.ID == parsedID).Single();
-
                 //if (value > 0)
                 //{
                 //    throw new ArgumentException("Product with this ID Already Discontinued ", nameof(id));
-                //}
-                
+                //}    
                 result = context.Products.Where(x => x.ID == parsedID).Single();
                 result.Discontinued = true;
                 context.SaveChanges();
             }
-
             return result;
         }
 
