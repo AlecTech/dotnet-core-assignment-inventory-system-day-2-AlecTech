@@ -102,13 +102,13 @@ namespace ReactAPI_4Point2.Controllers
         }
         // Discontinue product by id 
         [HttpPatch("Discontinue")]
-        public ActionResult<Product> DiscontinueProduct_PATCH(string id)
+        public ActionResult<Product> DiscontinueProduct_PATCH(string id, string changeState)
         {
             ActionResult<Product> response;
             Product result;
             try
             {  
-                result = new ProductController().DiscontinueProductByID(id);
+                result = new ProductController().DiscontinueProductByID(id, changeState);
 
                 response = Ok(result);
             }

@@ -10,7 +10,7 @@ function DiscontinuedProduct(props) {
     const [response, setResponse] = useState([]);
     // Used to store the field values.
     const [id, setCategoryID] = useState("");
-    //const [name, setName] = useState("");
+    const [changeState, setName] = useState("");
     // Used to determine whether we are awaiting a response.
     const [waiting, setWaiting] = useState(false);
 
@@ -20,9 +20,9 @@ function DiscontinuedProduct(props) {
             case "id":
                 setCategoryID(event.target.value);
                 break;
-            //case "name":
-            //    setName(event.target.value);
-            //    break;
+            case "discontinue":
+                setName(event.target.value);
+                break;
         }
     }
 
@@ -40,7 +40,7 @@ function DiscontinuedProduct(props) {
                 // Specify the query parameters (the stuff we used in postman).
                 params: {
                     id: id,
-                    //name: name
+                    changeState: changeState
                 }
             }
             // .then() means that once the response is received, do something with it.
@@ -70,6 +70,9 @@ function DiscontinuedProduct(props) {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="id">Product ID</label>
                 <input id="id" type="text" onChange={handleFieldChange} />
+                <br />
+                <label htmlFor="discontinue">Enter True if Disconinued or False if Not Discontinued</label>
+                <input id="discontinue" type="text"  onChange={handleFieldChange} />
                 <br />
                 
                 <input type="submit" value="Submit!" />

@@ -142,7 +142,7 @@ namespace ReactAPI_4Point2.Controllers
             return result;
         }
 
-        public Product DiscontinueProductByID(string id)
+        public Product DiscontinueProductByID(string id, string changeState)
         {
             int parsedID;
 
@@ -158,21 +158,35 @@ namespace ReactAPI_4Point2.Controllers
                     throw new ArgumentException("Product ID was is not valid.", nameof(id));
                 }
             }
+
+            bool parsedState;
+
+            if (string.IsNullOrWhiteSpace(changeState))
+            {
+                throw new ArgumentNullException(nameof(changeState), "Product State is missing.");
+            }
+            else
+
+                changeState = changeState.Trim();
+                if (!bool.TryParse(changeState, out parsedState))
+                {
+                    throw new ArgumentException("Product State was is not valid.", nameof(changeState));
+                }
             
 
             Product result;
            
             using (InventoryContext context = new InventoryContext())
             {
-                
-                //Int32 value = -1;
-                //value = context.Products.Where(x => x.ID == parsedID).Single();
-                //if (value > 0)
-                //{
-                //    throw new ArgumentException("Product with this ID Already Discontinued ", nameof(id));
-                //}    
+
+               
+                var value = context.Products.Where(x => x.ID == parsedID).Single();
+                if (value.Discontinued == true)
+                {
+                    throw new ArgumentException("Product with this ID Already Discontinued ", nameof(id));
+                }
                 result = context.Products.Where(x => x.ID == parsedID).Single();
-                result.Discontinued = true;
+                result.Discontinued = parsedState;
                 context.SaveChanges();
             }
             return result;
